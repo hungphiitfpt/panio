@@ -1,0 +1,51 @@
+/*
+* Copyright(c) Fujinet Co., Ltd.
+* All rights reserved.
+*
+* $Id: ProductListController.java,v 1.6 2022/09/09 09:21:23 phi-nph Exp $
+*/
+
+package vn.co.fjs.shoppingsys.app.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import vn.co.fjs.shoppingsys.repository.ProductRepository;
+import vn.co.fjs.shoppingsys.service.ProductListService;
+import vn.co.fjs.shoppingsys.service.ProductTypeService;
+
+@Controller
+public class ProductListController {
+
+	@Autowired
+	ProductListService productservice;
+
+	@Autowired
+	ProductTypeService productTypeService;
+	
+	@Autowired
+	ProductRepository productRepository;
+
+	@GetMapping("/getAllProduct")
+	public String findPanigation(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size, Model model) {
+	
+		 model.addAttribute("listProducts", productRepository.findAll(PageRequest.of(page, size)));
+		return "product/index";
+	}
+	
+	@RequestMapping("/buyCart")
+	// hiển thị sản phẩm ra table ProductList
+	public String CartController(Model model) {
+		
+		return "cart/index";
+		
+	}
+
+}
