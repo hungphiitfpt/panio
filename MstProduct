@@ -1,0 +1,164 @@
+package vn.co.fjs.shoppingsys.entity;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "mstproduct")
+public class MstProduct implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="product_id")
+	private String productId;
+
+	@Column(name="createtime")
+	private Timestamp createtime;
+
+	@Column(name="createuser")
+	private String createuser;
+
+	@Column(name="product_amount")
+	private Integer productAmount;
+
+	@Column(name="product_description")
+	private String productDescription;
+
+	@Column(name="product_img")
+	private String productImg;
+
+	@Column(name="product_name")
+	private String productName;
+
+	@Column(name="producttype_id")
+	private String productTypeId;
+
+	@Column(name="status")
+	private Boolean status;
+
+	@Column(name="updatetime")
+	private Timestamp updatetime;
+
+	@Column(name="updateuser")
+	private String updateuser;
+
+//	@OneToMany
+//	@Column(name = "idOrderById",insertable = false, updatable = false)
+//	TrProductOrder idOrder;
+	@ManyToOne
+	@JoinColumn(name = "producttype_id",insertable = false, updatable = false)
+	MstProductType productType;
+	
+	
+
+	/**
+	 * @return the productType
+	 */
+	public MstProductType getProductType() {
+		return productType;
+	}
+
+	/**
+	 * @param productType the productType to set
+	 */
+	public void setProductType(MstProductType productType) {
+		this.productType = productType;
+	}
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+
+	public Timestamp getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(Timestamp createtime) {
+		this.createtime = createtime;
+	}
+
+	public String getCreateuser() {
+		return createuser;
+	}
+
+	public void setCreateuser(String createuser) {
+		this.createuser = createuser;
+	}
+
+	public Integer getProductAmount() {
+		return productAmount;
+	}
+
+	public void setProductAmount(Integer productAmount) {
+		this.productAmount = productAmount;
+	}
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
+	public String getProductImg() {
+		return productImg;
+	}
+
+	public void setProductImg(String productImg) {
+		this.productImg = productImg;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getProductTypeId() {
+		return productTypeId;
+	}
+
+	public void setProductTypeId(String productTypeId) {
+		this.productTypeId = productTypeId;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public Timestamp getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(Timestamp updatetime) {
+		this.updatetime = updatetime;
+	}
+
+	public String getUpdateuser() {
+		return updateuser;
+	}
+
+	public void setUpdateuser(String updateuser) {
+		this.updateuser = updateuser;
+	}
+}
