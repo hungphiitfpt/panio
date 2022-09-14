@@ -1,0 +1,18 @@
+package vn.co.fjs.shoppingsys.service;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import vn.co.fjs.shoppingsys.entity.MstProduct;
+
+public interface ProductListService {
+
+	List<MstProduct> findAllProduct();
+
+	List<MstProduct> findByKeyWord(String description, String name, String typeid);
+
+	Page<MstProduct> findProductPagigation(String name, String description, String typeid, Pageable pageable);
+
+}
