@@ -1,0 +1,39 @@
+public void updateUser(String[] id) {
+
+		// Câu lệnh cập nhập customer set ngày xóa là ngày hiện tại điều kiện id
+		// customer truyền vào dấu ?
+		String sql = "UPDATE MSTCUSTOMER SET DELETE_YMD = GETDATE() WHERE  CUSTOMER_ID IN (";
+
+		try {
+			// for mảng customer được đưa vào mảng
+			for (int i = 0; i < id.length; i++) {
+				// nếu tìm thấy push vào bảng sql
+				sql += id[i];
+				// khi đặt tới max length thì dừng lại
+				if (i == id.length - 1) {
+					sql += ")";
+				}
+				// nếu chưa lặp xong thì tiếp tục append id customer vào
+				else {
+					sql += ",";
+				}
+			}
+
+			SQLQuery query = session.createSQLQuery(sql);
+			// Truy vấn câu lệnh sql
+
+			// truyền tham số vào dấu chấm hỏi
+			// Chạy câu lệnh update
+			query.executeUpdate();
+			// cập nhật sự thay đổi của dữ liệu
+			transaction.commit();
+			//Sau khi chạy xong xóa session
+			session.clear();
+			//Đóng session lại
+			session.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	} 
